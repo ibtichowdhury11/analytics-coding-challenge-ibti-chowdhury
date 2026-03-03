@@ -1,0 +1,20 @@
+{
+  "name": "Inventory Snapshot (Example)",
+  "slug": "inventory-snapshot-example",
+  "description": "Example inventory snapshot chart",
+  "sql": "select entity, count_value from (select 'publishers' as entity, toFloat64(count(*)) as count_value from raw.publishers union all select 'campaigns' as entity, toFloat64(count(*)) as count_value from raw.campaigns union all select 'ad_units' as entity, toFloat64(count(*)) as count_value from raw.ad_units) t",
+  "limit": 100,
+  "config": {
+    "type": "vertical_bar",
+    "metadata": { "version": 1 },
+    "fieldConfig": {
+      "x": { "type": "category", "reference": "entity" },
+      "y": [{ "aggregation": "sum", "reference": "count_value" }],
+      "groupBy": []
+    },
+    "display": {
+      "xAxis": { "label": "Entities" },
+      "yAxis": [{ "label": "Count" }]
+    }
+  }
+}

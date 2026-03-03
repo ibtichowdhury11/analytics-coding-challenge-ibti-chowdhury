@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "slug": "venatus-dashboard",
+  "name": "Venatus Dashboard",
+  "description": "Starter chart only. Candidates should build their own challenge dashboards.",
+  "spaceSlug": "shared",
+  "pinToHomepage": true,
+  "tabs": [],
+  "tiles": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 6,
+      "type": "saved_chart",
+      "properties": {
+        "chartSlug": "inventory-snapshot-example"
+      }
+    }
+  ]
+}
