@@ -1,7 +1,7 @@
 {{
     config(
         materialized='table',
-        unique_key='campaign_id'
+        unique_key='campaign_id',
         order_by=['advertiser_id', 'campaign_id']
     )
 }}

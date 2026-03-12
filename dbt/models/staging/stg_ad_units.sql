@@ -1,7 +1,7 @@
 {{
     config(
         materialized='table',
-        unique_key='ad_unit_id'
+        unique_key='ad_unit_id',
         order_by=['publisher_id', 'ad_unit_id']
     )
 }}

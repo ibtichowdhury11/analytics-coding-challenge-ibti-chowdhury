@@ -2,7 +2,7 @@
   config(
     materialized='table',
     unique_key='publisher_id',
-    partition_by='toYYYYMM(updated_at)'
+    partition_by='toYYYYMM(updated_at)',
     order_by=['publisher_id']
   )
 }}
