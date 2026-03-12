@@ -76,7 +76,6 @@ SELECT
     COALESCE(b.browser, 'unknown') AS browser,
     p.publisher_name,
     p.publisher_category,
-    CAST(sum(b.total_filled_impressions) AS Float64) / NULLIF(sum(b.total_ad_requests), 0) AS fill_rate,
     sum(b.total_filled_impressions) AS total_filled_impressions,
     sum(b.impressions) AS impressions,
     sum(b.viewable_impressions) AS viewable_impressions,
