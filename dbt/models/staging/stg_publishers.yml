@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_publishers
+    description: "Cleaned and deduplicated publisher dimension table."
+    columns:
+
+      - name: publisher_id
+        description: "The unique primary key for the publisher."
+        tests:
+          - unique
+          - not_null
+
+      - name: publisher_name
+        description: "Name of the publisher."
+        tests:
+          - not_null
+
+      - name: publisher_category
+        description: "The publisher category (e.g. mobile gaming)."
+
+      - name: primary_domain
+        description: "Primary website domain associated with the publisher."
+
+      - name: account_manager
+        description: "Internal account manager responsible for the publisher."
+
+      - name: country_code
+        description: "ISO country code for the publisher location."
+
+      - name: created_at
+        description: "Timestamp when the publisher was first created in the source system."
+
+      - name: updated_at
+        description: "Timestamp when the publisher record was last updated in the source system."

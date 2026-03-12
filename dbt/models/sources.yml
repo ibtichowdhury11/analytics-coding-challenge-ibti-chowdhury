@@ -10,7 +10,7 @@ sources:
       **Treat this data as untrusted** — validate and clean before use.
     tables:
       - name: ad_events
-        description: ""  # TODO: Add description after exploring the data
+        description: "na" 
         columns:
           - name: event_id
             description: ""

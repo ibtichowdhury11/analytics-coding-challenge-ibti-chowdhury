@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_ad_units
+    description: "Cleaned and deduplicated dimension table for ad units (placements). Grain is one row per ad_unit_id."
+    columns:
+      - name: ad_unit_id
+        description: "Primary key for the ad unit."
+        tests:
+          - unique
+          - not_null
+
+      - name: publisher_id
+        description: "Foreign key to the publisher."
+        tests:
+          - not_null
+
+      - name: ad_unit_name
+        description: "The name of the specific ad placement (e.g., Leaderboard, Pre-roll)."
+
+      - name: ad_format
+        description: "The type of ad served (e.g., display, video, native)."
+
+      - name: ad_size
+        description: "Dimensions of the ad unit (e.g., 728x90, fluid)."
+
+      - name: placement_type
+        description: "Location on the page (e.g., above_fold, in_content)."
+
+      - name: is_active
+        description: "Binary flag (1 for active, 0 for inactive)."
+        tests:
+          - accepted_values:
+              arguments: 
+                values: [0, 1]
+
+
+      - name: created_at
+        description: "The date the ad unit was first created."

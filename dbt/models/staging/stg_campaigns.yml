@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_campaigns
+    description: "Cleaned and deduplicated campaign dimension table. Grain is one row per campaign_id."
+    columns:
+      - name: campaign_id
+        description: "Primary key for the campaign."
+        tests:
+          - unique
+          - not_null
+
+      - name: advertiser_id
+        description: "ID of the advertiser. One advertiser can have multiple campaigns."
+        tests:
+          - not_null
+
+      - name: advertiser_name
+        description: "The parent company name (e.g., Microsoft Gaming, Sony)."
+
+      - name: campaign_budget_usd
+        description: "The total allocated budget for the campaign in USD."
+
+      - name: campaign_status
+        description: "The current lifecycle status (e.g., active, completed)."
+        
+
+      - name: targeting_device_types
+        description: "Comma-separated string of target devices (e.g., desktop, mobile)."
+
+      - name: targeting_countries
+        description: "Comma-separated string of target ISO country codes."
