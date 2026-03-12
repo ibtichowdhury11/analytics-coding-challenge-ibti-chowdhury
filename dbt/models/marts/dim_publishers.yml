@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: dim_publishers
+    description: "Cleaned and deduplicated dimension table for publishers. Use this to slice metrics by publisher name and category."
+    columns:
+      - name: publisher_id
+        description: "Primary key for the publisher."
+        tests:
+          - unique
+          - not_null
+
+      - name: publisher_name
+        description: "The official name of the website or publisher entity."
+        tests:
+          - not_null
+
+      - name: publisher_category
+        description: "The business vertical of the publisher (e.g., mobile gaming, news)."
+      
+
+      - name: country_code
+        description: "Standardized ISO country code."
+
+      - name: primary_domain
+        description: "The main URL associated with the publisher."
+
+      - name: account_manager
+        description: "The Venatus point of contact for this publisher."
+
+      - name: updated_at
+        description: "Timestamp of the last record update in the source system."
