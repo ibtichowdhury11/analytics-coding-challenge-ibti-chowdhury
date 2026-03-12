@@ -1,0 +1,18 @@
+# Orchestration Specification
+# This file is an attempt at creating automatic tag runs that make tables run every day on a schedule. 
+schedules:
+
+- name: "ad_events_daily"
+  description: "Daily 9am incremental build for the mart layer ad events."
+  cron: "0 9 * * *"
+  command: "dbt build --select tag:ad_events_daily"
+  logic: "incremental"
+  target: "fct_ad_events_daily"
+
+
+- name: "publisher_lookups"
+  description: "Daily 9am refresh for the publisher dimension lookup table."
+  cron: "0 9 * * *"
+  command: "dbt build --select tag:publisher_lookups"
+  logic: "table"
+  target: "dim_publishers"

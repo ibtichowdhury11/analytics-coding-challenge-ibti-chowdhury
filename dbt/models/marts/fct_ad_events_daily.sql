@@ -3,6 +3,7 @@
     materialized='incremental',
     unique_key='unique_key',
     incremental_strategy='append',
+    tags=['ad_events_daily'],
     partition_by='date',
     order_by=['date', 'site_domain', 'device_type'],
     pre_hook=[

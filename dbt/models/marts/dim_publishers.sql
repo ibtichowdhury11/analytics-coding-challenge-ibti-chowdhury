@@ -2,6 +2,7 @@
   config(
     materialized='table',
     unique_key='publisher_id',
+    tags=['publisher_lookups'],
     order_by=['publisher_id']
   )
 }}
