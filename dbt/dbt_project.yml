@@ -2,6 +2,11 @@ name: 'venatus_analytics'
 version: '1.0.0'
 config-version: 2
 
+vars:
+  current_date: "today()"
+  current_date_minus_10_days: "subtractDays(today(), 10)"
+  event_start_date: '2026-02-10'
+
 profile: 'venatus_analytics'
 
 model-paths: ["models"]

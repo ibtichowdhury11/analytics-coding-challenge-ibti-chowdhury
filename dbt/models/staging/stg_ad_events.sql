@@ -9,7 +9,7 @@
     pre_hook=[
         "{% if is_incremental() %} 
             ALTER TABLE {{ this }} DELETE 
-            WHERE event_date >= subtractDays(today(), 10)
+            WHERE event_date BETWEEN {{ var('current_date_minus_10_days') }} AND {{ var('current_date') }}
             SETTINGS mutations_sync = 2
          {% endif %}"
     ]
@@ -39,9 +39,9 @@ WITH base_events AS (
     FROM {{ source('raw', 'ad_events') }}
     WHERE 
       {% if is_incremental() %}
-        toDate(event_timestamp) >= subtractDays(today(), 10)
+       toDate(event_timestamp) BETWEEN {{ var('current_date_minus_10_days') }} AND {{ var('current_date') }}
       {% else %}
-        toDate(event_timestamp) >= '2026-02-10'
+        toDate(event_timestamp) >= '{{ var('event_start_date') }}'
       {% endif %}
 ), 
 
