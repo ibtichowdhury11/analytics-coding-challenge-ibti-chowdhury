@@ -25,3 +25,9 @@ schedules:
     cron: "0 8 * * *"
     command: "dbt build --select tag:staging_publishers"
     target: "stg_publishers"
+
+    manual_tasks:
+  - name: "staging_events_full_refresh"
+    description: "Manual override to rebuild entire history for staging events."
+    command: "dbt build --select tag:staging_events --full-refresh"
+    target: "stg_ad_events"

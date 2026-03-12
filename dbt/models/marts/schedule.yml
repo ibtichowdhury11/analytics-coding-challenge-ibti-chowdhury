@@ -16,3 +16,9 @@ schedules:
   command: "dbt build --select tag:publisher_lookups"
   logic: "table"
   target: "dim_publishers"
+
+  manual_tasks: 
+  - name: "ad_events_daily_full_refresh"
+    description: "Manual override to rebuild entire history for the daily events mart."
+    command: "dbt build --select tag:ad_events_daily_full_refresh --full-refresh"
+    target: "fct_ad_events_daily"

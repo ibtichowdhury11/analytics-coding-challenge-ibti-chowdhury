@@ -3,7 +3,7 @@
     materialized='incremental',
     unique_key='event_id',
     incremental_strategy='append',
-    tags=['staging_events'],
+    tags=['staging_events', 'staging_events_full_refresh'],
     partition_by='event_date',
     order_by=['event_date', 'publisher_id', 'ad_unit_id'],
     pre_hook=[
