@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: fct_ad_events_daily
+    description: >
+      Daily aggregated ad performance metrics at the grain of publisher, site, ad unit, 
+      campaign, advertiser, device, browser, and country.
+      This model is incremental and refreshes the last 10 days of data on every run.
+    columns:
+      - name: unique_key
+        description: "MD5 hash of the row grain. Primary key for the table."
+        tests:
+          - unique
+          - not_null
+
+      - name: date
+        description: "The calendar date of the events."
+        tests:
+          - not_null
+
+      - name: month
+        description: "The first day of the month for trend analysis."
+
+      - name: site_domain
+        description: "The domain where the ad was served. Coalesced to 'unknown'."
+
+      - name: ad_unit_id
+        description: "Unique identifier for the specific ad slot."
+
+      - name: campaign_id
+        description: "Identifier for the specific advertising campaign."
+
+      - name: advertiser_id
+        description: "Identifier for the advertiser."
+
+      - name: device_type
+        description: "The type of device (e.g., mobile, desktop, tablet, ctv)."
+
+      - name: country_code
+        description: "The ISO 2-letter country code."
+
+      - name: browser
+        description: "The browser used by the end user."
+
+      - name: publisher_name
+        description: "The display name of the publisher (from dim_publishers)."
+
+      - name: publisher_category
+        description: "The content category of the publisher."
+
+      - name: fill_rate
+        description: "Total Filled Impressions / Total Ad Requests. Values > 1 indicate multiple impressions per request."
+
+      - name: total_filled_impressions
+        description: "Sum of successfully filled ad slots."
+
+      - name: impressions
+        description: "Total number of tracked ad impressions."
+
+      - name: viewable_impressions
+        description: "Total number of impressions that met viewability standards."
+
+      - name: clicks
+        description: "Total number of user clicks on the ads."
+
+      - name: total_revenue_usd
+        description: "Total revenue generated, stored as a Decimal64(6)."
+
+      - name: total_bid_floor_usd
+        description: "Total value of bid floors applied to the requests."
