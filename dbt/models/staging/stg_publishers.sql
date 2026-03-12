@@ -2,6 +2,7 @@
   config(
     materialized='table',
     unique_key='publisher_id',
+    tags=['staging_publishers'],
     partition_by='toYYYYMM(updated_at)',
     order_by=['publisher_id']
   )

@@ -1,0 +1,27 @@
+# Orchestration Specification
+# This file is an attempt at creating automatic tag runs that make tables run every day on a schedule. 
+schedules:
+
+  - name: "staging_events"
+    description: "Daily incremental build for the staging_events table."
+    cron: "0 8 * * *" 
+    command: "dbt build --select tag:staging_events"
+    logic: "incremental"
+    target: "stg_ad_events"
+
+  - name: "staging_ad_units"
+    cron: "0 8 * * *"
+    command: "dbt build --select tag:staging_ad_units"
+    description: "Daily 8am refresh for the materialised ad units table."
+
+  - name: "staging_campaigns"
+    description: "Daily 8am refresh for the materialized campaigns table."
+    cron: "0 8 * * *"
+    command: "dbt build --select tag:staging_campaigns"
+    target: "stg_campaigns"
+
+  - name: "staging_publishers"
+    description: "Daily 8am refresh for the materialized publishers table."
+    cron: "0 8 * * *"
+    command: "dbt build --select tag:staging_publishers"
+    target: "stg_publishers"

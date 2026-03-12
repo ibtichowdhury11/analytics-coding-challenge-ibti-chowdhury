@@ -2,6 +2,7 @@
     config(
         materialized='table',
         unique_key='ad_unit_id',
+        tags=['staging_ad_units'],
         order_by=['publisher_id', 'ad_unit_id']
     )
 }}

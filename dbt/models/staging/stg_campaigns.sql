@@ -2,6 +2,7 @@
     config(
         materialized='table',
         unique_key='campaign_id',
+        tags=['staging_campaigns'],
         order_by=['advertiser_id', 'campaign_id']
     )
 }}
