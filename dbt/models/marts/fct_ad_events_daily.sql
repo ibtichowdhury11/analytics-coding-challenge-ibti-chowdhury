@@ -28,7 +28,7 @@ WITH events AS (
         device_type,
         country_code,
         browser,
-        count(*) AS total_ad_requests,
+        count(*) AS ad_requests,
         sum(is_filled) AS total_filled_impressions,
         countIf(event_type = 'impression') AS impressions,
         countIf(event_type = 'viewable_impression') AS viewable_impressions,
@@ -57,7 +57,7 @@ SELECT
     -- Stable unique key with 'unknown' for NULLs
     lower(hex(MD5(concat(
         toString(COALESCE(b.date, '1970-01-01')), 
-        toString(COALESCE(b.publisher_id, 0)), 
+        toString(COALESCE(p.publisher_name, 'unknown')),
         toString(COALESCE(b.ad_unit_id, 'unknown')), 
         toString(COALESCE(b.site_domain, 'unknown')),
         toString(COALESCE(b.device_type, 'unknown')),
@@ -75,8 +75,9 @@ SELECT
     COALESCE(b.device_type, 'unknown') AS device_type,
     COALESCE(b.country_code, 'unknown') AS country_code,
     COALESCE(b.browser, 'unknown') AS browser,
-    p.publisher_name,
+    COALESCE(p.publisher_name, 'unknown') AS publisher_name,
     p.publisher_category,
+    SUM(b.ad_requests) AS ad_requests,
     sum(b.total_filled_impressions) AS total_filled_impressions,
     sum(b.impressions) AS impressions,
     sum(b.viewable_impressions) AS viewable_impressions,
