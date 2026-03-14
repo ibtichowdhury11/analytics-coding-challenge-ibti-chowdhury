@@ -9,27 +9,42 @@ models:
     
     columns:
       - name: unique_key
-        description: "MD5 hash of the row grain. Primary key for the table."
+        description: "MD5 hash of the row grain (Date, Publisher, Ad Unit, Site, Device, Browser, Campaign, Advertiser, Country). Primary key for the table."
         tests:
           - unique
           - not_null
 
       - name: date
-        description: "The calendar date of the events."
+        description: "The  date of the events."
         tests:
           - not_null
 
-      - name: publisher_id
-        description: "Raw ID of the publisher."
+      - name: month
+        description: "The first day of the month for the event date, used for monthly trend analysis."
 
       - name: publisher_name
-        description: "The display name of the publisher."
+        description: "The display name of the publisher (joined from raw_publishers)."
+
+      - name: publisher_category
+        description: "The business category assigned to the publisher."
 
       - name: site_domain
         description: "The domain where the ad was served."
 
+      - name: ad_unit_id
+        description: "The unique identifier for the specific ad placement."
+
+      - name: campaign_id
+        description: "The unique identifier for the advertising campaign."
+
+      - name: advertiser_id
+        description: "The unique identifier for the advertiser."
+
       - name: device_type
         description: "The type of device (mobile, desktop, etc)."
+
+      - name: browser
+        description: "The web browser used by the user."
 
       - name: country_code
         description: "The ISO 2-letter country code."
@@ -52,6 +67,14 @@ models:
             sum_impressions:
               type: sum
               label: "Total Impressions"
+
+      - name: viewable impressions
+        description: "Total number of tracked ad impressions."
+        meta:
+          metrics:
+            sum_viewable_impressions:
+              type: sum
+              label: "Total Viewable Impressions"
 
       - name: total_ad_requests
         description: "Total number of ad requests initiated."
